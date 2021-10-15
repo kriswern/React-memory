@@ -54,23 +54,17 @@ function Deck({ cards, ...props }) {
   
   return (
     <>
-      {currentCards.map((card, index) => {
-        let isSelected = false;
-
-        if (selectedCard.includes(index)) isSelected = true;
-        if (matched.includes(card.value)) isSelected = true;
-
-        return (
+      {currentCards.map((card, index) => (
           <Card
             key={index}
             imageSrc={card.image}
             imageAlt={card.code}
             value={card.value}
-            selected={isSelected}
+            selected={(selectedCard.includes(index) || matched.includes(card.value))}
             onClick={() => selectCard(index)}
           />
-        );
-      })}
+        )
+      )}
       <button onClick={() => handleShuffle()}>New Game</button>
     </>
   );
